@@ -2,11 +2,19 @@
 <%= link_to "Empty cart", cart_clear_path %>
 <br><br><br>
 
+<!-- Accessing the cart session hash ["1",1], where "1" is the product id.
+-->
+
 <% @cart.each do |id, qty| %>
   <% product = Product.find_by_id(id) %>
   
   <ul>
-  <li><%= link_to product.title, product %></li>
+  <li>
+    <%= link_to product.title, product %>
+    <p><%= product.description %></p>
+    <p><%= number_to_currency(product.price, unit: '$') %></p>
+    <p>Quantity: <%= qty %></p>
+  </li>
   </ul>
 
 <% end %>
