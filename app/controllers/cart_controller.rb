@@ -1,5 +1,7 @@
 class CartController < ApplicationController
   
+  before_action :authenticate_user!
+  
   # id is the product id via 'Add to cart' & routes.
   # We're creating a cart session hash with key (product id) and value (quantity 1 or +1). This creates ["1", 1], ["2", 1], ["3", 2] etc.
   # cart is defined at the Application Controller.

@@ -1,6 +1,12 @@
 <h1>Your cart</h1>
+<% if @cart.empty? %>
+  <p></p>
+<% else %>
 <%= link_to "Empty cart", cart_clear_path %>
+<% end %>
 <br><br><br>
+
+<% total = 0 %>
 
 <!-- Accessing the cart session hash ["1",1], where "1" is the product id.
 -->
@@ -17,4 +23,10 @@
   </li>
   </ul>
 
+  <% total += qty*product.price %>
 <% end %>
+
+<b>Total: <%= number_to_currency(total, unit: '$') %></b>
+
+
+
